@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">JobJet</string>
+    <string name="sorry_this_page_is_under_development">Sorry!! This Page is Under Development</string>
+    <string name="russian">Russian</string>
+    <string name="student">Student</string>
+    <string name="select_category">Select Category</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="not_yet_registered_signup_now">Not yet registered? SignUp Now</string>
+    <string name="username">Username</string>
+    <string name="todo">TODO</string>
+    <string name="under_development">Under Development</string>
+</resources>
