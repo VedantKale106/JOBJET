@@ -22,7 +22,8 @@ public class Database extends SQLiteOpenHelper {
     private static final String SKILL = "skill";
     private static final String PHONE = "phone";
     private static final String AGE = "age";
-    private static final String IMAGE = "image";
+    private static final String RATE = "rate";
+
 
 
     public Database(Context context) {
@@ -33,7 +34,7 @@ public class Database extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String CREATE_FREELANCER_TABLE = "CREATE TABLE " + TABLE_FREELANCER + "("
                 + USERNAME + " TEXT PRIMARY KEY ," + NAME + " TEXT,"
-                + SKILL + " TEXT," + LOCATION + " TEXT," + AGE + " INTEGER," + PHONE + " INTEGER," +  DESCRIPTION + " TEXT," + IMAGE + " INTEGER," + ")";
+                + SKILL + " TEXT," + LOCATION + " TEXT," + AGE + " INTEGER," + PHONE + " INTEGER," +  DESCRIPTION + " TEXT," + RATE + " NUMBER"+ ")";
         db.execSQL(CREATE_FREELANCER_TABLE);
     }
 
@@ -58,7 +59,7 @@ public class Database extends SQLiteOpenHelper {
         values.put(AGE, freelancer.getAge());
         values.put(PHONE, freelancer.getPhoneNo());
         values.put(DESCRIPTION, freelancer.getDescription());
-        values.put(IMAGE, freelancer.getImage());
+        values.put(RATE, freelancer.getRate());
 
 
         // Inserting Row
@@ -86,7 +87,7 @@ public class Database extends SQLiteOpenHelper {
                 freelancer.setAge(Integer.parseInt(cursor.getString(4)));
                 freelancer.setPhoneNo(Integer.parseInt(cursor.getString(5)));
                 freelancer.setDescription(cursor.getString(6));
-                freelancer.setImage(Integer.parseInt(cursor.getString(7)));
+                freelancer.setRate(Integer.parseInt(cursor.getString(7)));
 
                 // Adding contact to list
                 freelancerList.add(freelancer);
@@ -95,6 +96,37 @@ public class Database extends SQLiteOpenHelper {
 
         // return contact list
         return freelancerList;
+    }
+    public ArrayList<Freelancer> readFreelancers() {
+        // on below line we are creating a
+        // database for reading our database.
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // on below line we are creating a cursor with query to read data from database.
+        Cursor cursorCourses = db.rawQuery("SELECT * FROM " + TABLE_FREELANCER, null);
+
+        // on below line we are creating a new array list.
+        ArrayList<Freelancer> courseModalArrayList = new ArrayList<>();
+
+        // moving our cursor to first position.
+        if (cursorCourses.moveToFirst()) {
+            do {
+                // on below line we are adding the data from cursor to our array list.
+                courseModalArrayList.add(new Freelancer(cursorCourses.getString(0),
+                        cursorCourses.getString(1),
+                        cursorCourses.getString(2),
+                        cursorCourses.getString(3),
+                        cursorCourses.getInt(4),
+                        cursorCourses.getInt(5),
+                        cursorCourses.getString(6),
+                        cursorCourses.getInt(7)));
+            } while (cursorCourses.moveToNext());
+            // moving our cursor to next.
+        }
+        // at last closing our cursor
+        // and returning our array list.
+        cursorCourses.close();
+        return courseModalArrayList;
     }
     public void deleteFreelancer(Freelancer freelancer) {
         SQLiteDatabase db = this.getWritableDatabase();

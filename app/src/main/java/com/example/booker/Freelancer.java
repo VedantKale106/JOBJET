@@ -3,9 +3,17 @@ package com.example.booker;
 public class Freelancer {
     String username , name , location , description ;
     String skill;
-    int phoneNo , age , image;
+    int phoneNo , age , rate;
 
-    public Freelancer(String username, String name, String location, String description, String skill, int phoneNo, int age, int image) {
+    public int getRate() {
+        return rate;
+    }
+
+    public void setRate(int rate) {
+        this.rate = rate;
+    }
+
+    public Freelancer(String username, String name, String skill, String location, int age, int phoneNo, String description , int rate ) {
         this.username = username;
         this.name = name;
         this.location = location;
@@ -13,8 +21,9 @@ public class Freelancer {
         this.skill = skill;
         this.phoneNo = phoneNo;
         this.age = age;
-        this.image = image;
+        this.rate = rate;
     }
+
     public Freelancer(){ }
 
 
@@ -74,11 +83,4 @@ public class Freelancer {
         this.age = age;
     }
 
-    public int getImage() {
-        return image;
-    }
-
-    public void setImage(int image) {
-        this.image = image;
-    }
 }

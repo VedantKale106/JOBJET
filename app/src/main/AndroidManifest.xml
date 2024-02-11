@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,16 +16,21 @@
         android:theme="@style/Theme.Booker"
         tools:targetApi="31">
         <activity
+            android:name=".Display"
+            android:exported="false" />
+        <activity
+            android:name=".AddFreelancer"
+            android:exported="false" />
+        <activity
             android:name=".Programming"
             android:exported="true"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".CustomList"
             android:exported="false" />
         <activity
             android:name=".StudentInfo"
             android:exported="true" />
-
         <activity
             android:name=".StudentBook"
             android:exported="true"
